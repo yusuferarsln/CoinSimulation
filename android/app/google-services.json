@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "561780489530",
+    "project_id": "coin-sim-f6fc1",
+    "storage_bucket": "coin-sim-f6fc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561780489530:android:72085d84ab58fd71c9e403",
+        "android_client_info": {
+          "package_name": "com.example.coin_sim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561780489530-dtjud4mrh1ecs6aoibt7vp72fnodvour.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coin_sim",
+            "certificate_hash": "9c6429d69539364f46219fdecfd32fa34d7d3ccc"
+          }
+        },
+        {
+          "client_id": "561780489530-b696s5rj1cic77acsi5l2fo2il8hor1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBym35yFfrYvT6bh9l_bqBDTGaZwA_Zpmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561780489530-b696s5rj1cic77acsi5l2fo2il8hor1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
