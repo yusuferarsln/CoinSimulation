@@ -38,16 +38,24 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
                   shrinkWrap: true,
                   itemBuilder: ((context, index) {
                     return ListTile(
-                      tileColor: index == 0 ? Colors.black12 : Colors.grey,
+                      tileColor: listOfDocumentSnap[index]['user'] ==
+                              auth.currentUser!.email
+                          ? Colors.green
+                          : index == 0
+                              ? Colors.black12
+                              : Colors.grey,
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          index == 0
-                              ? Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                )
-                              : Text('No: ${index + 1}'),
+                          listOfDocumentSnap[index]['user'] ==
+                                  auth.currentUser!.email
+                              ? Icon(Icons.verified_user)
+                              : index == 0
+                                  ? Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                    )
+                                  : Text('No: ${index + 1}'),
                           SizedBox(
                             width: 10,
                           ),
@@ -60,7 +68,8 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
                           Text('Money= ' +
                               listOfDocumentSnap[index]['money']
                                   .toString()
-                                  .toUpperCase()),
+                                  .toUpperCase()
+                                  .substring(0, 8)),
                         ],
                       ),
                     );

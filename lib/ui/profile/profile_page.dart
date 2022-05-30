@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coin_sim/ui/home/viewmodel/home_page_viewmodel.dart';
+import 'package:coin_sim/ui/profile/coin_detail_page.dart';
 import 'package:coin_sim/ui/statistics/view/statistic_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -75,14 +77,32 @@ class _ProfilePageState extends State<ProfilePage> {
                             ? SizedBox.shrink()
                             : list[index]['CoinNumber'] == 0
                                 ? SizedBox.shrink()
-                                : ListTile(
-                                    title: Text(
-                                      list[index]['Coin Name'],
-                                      style: TextStyle(color: Colors.white),
+                                : Slidable(
+                                    startActionPane: ActionPane(
+                                        motion: const ScrollMotion(),
+                                        children: [
+                                          SlidableAction(
+                                            onPressed: (context) => doNothing(
+                                                list[index]['CoinNumber'],
+                                                list[index]['Coin Name'],
+                                                list[index]['Bought Date'],
+                                                list[index]['Bought Price']),
+                                            backgroundColor: Colors.grey,
+                                            foregroundColor: Colors.white,
+                                            icon: Icons.details_sharp,
+                                            label: 'Detail',
+                                          )
+                                        ]),
+                                    child: ListTile(
+                                      title: Text(
+                                        list[index]['Coin Name'],
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      subtitle: Text(
+                                          list[index]['CoinNumber'].toString(),
+                                          style:
+                                              TextStyle(color: Colors.white)),
                                     ),
-                                    subtitle: Text(
-                                        list[index]['CoinNumber'].toString(),
-                                        style: TextStyle(color: Colors.white)),
                                   ),
                       ),
                     );
@@ -98,7 +118,6 @@ class _ProfilePageState extends State<ProfilePage> {
           //     return Text(asyncSnapshot.data['money'].toString());
           //   },
           // ),
-  
 
           ElevatedButton(
               onPressed: () {
@@ -108,5 +127,18 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
     );
+  }
+
+  doNothing(
+      int coinNumber, String coinName, Timestamp boughtDate, var boughtPrice) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CoinDetail(
+              coinNumber: '1',
+              coinName: 'sa',
+              boughtDate: '1',
+              boughtPrice: '1'),
+        ));
   }
 }
