@@ -125,7 +125,9 @@ class _StatisticPageState extends State<StatisticPage> {
               : SingleChildScrollView(
                   child: Column(children: [
                     ListView.builder(
+                      
                       itemBuilder: ((context, index) {
+                        
                         return homePageViewModel.assetsModelList![index] == null
                             ? CircularProgressIndicator()
                             : Padding(

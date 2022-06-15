@@ -65,11 +65,15 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
                           SizedBox(
                             width: 10,
                           ),
-                          Text('Money= ' +
-                              listOfDocumentSnap[index]['money']
+                          Row(
+                            children: [
+                              Icon(Icons.attach_money),
+                              Text(listOfDocumentSnap[index]['money']
                                   .toString()
                                   .toUpperCase()
                                   .substring(0, 8)),
+                            ],
+                          ),
                         ],
                       ),
                     );

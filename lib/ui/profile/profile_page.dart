@@ -70,6 +70,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 return ListView.builder(
                   shrinkWrap: true,
                   itemBuilder: ((context, index) {
+                    DateTime myDateTime = list[index]['Bought Date'].toDate();
                     return Card(
                       color: Colors.black,
                       child: InkWell(
@@ -77,31 +78,47 @@ class _ProfilePageState extends State<ProfilePage> {
                             ? SizedBox.shrink()
                             : list[index]['CoinNumber'] == 0
                                 ? SizedBox.shrink()
-                                : Slidable(
-                                    startActionPane: ActionPane(
-                                        motion: const ScrollMotion(),
-                                        children: [
-                                          SlidableAction(
-                                            onPressed: (context) => doNothing(
-                                                list[index]['CoinNumber'],
-                                                list[index]['Coin Name'],
-                                                list[index]['Bought Date'],
-                                                list[index]['Bought Price']),
-                                            backgroundColor: Colors.grey,
-                                            foregroundColor: Colors.white,
-                                            icon: Icons.details_sharp,
-                                            label: 'Detail',
-                                          )
-                                        ]),
-                                    child: ListTile(
-                                      title: Text(
-                                        list[index]['Coin Name'],
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      subtitle: Text(
-                                          list[index]['CoinNumber'].toString(),
-                                          style:
-                                              TextStyle(color: Colors.white)),
+                                : ListTile(
+                                    title: Row(
+                                      children: [
+                                        Text(
+                                          list[index]['Coin Name'],
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Last transaction date : ' +
+                                              myDateTime
+                                                  .toString()
+                                                  .substring(0, 10),
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    ),
+                                    subtitle: Row(
+                                      children: [
+                                        Text(
+                                            list[index]['CoinNumber']
+                                                .toString(),
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        SizedBox(
+                                          width: 33,
+                                        ),
+                                        Text(
+                                          'Transaction Price : ' +
+                                              list[index]['Bought Price']
+                                                  .toString()
+                                                  .substring(0, 10) +
+                                              ' USD',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ],
                                     ),
                                   ),
                       ),
@@ -112,6 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
               }
             },
           ),
+
           // StreamBuilder<DocumentSnapshot>(
           //   stream: usersdocRef2.snapshots(),
           //   builder: (context, AsyncSnapshot asyncSnapshot) {
